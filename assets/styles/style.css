@@ -1,0 +1,42 @@
+.canvas{
+    background-image: url("../images/jambalaya.jpg");
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+}
+
+.brand{
+    margin-left: 10px;
+    font-size: larger;
+    font-family: 'Knewave', cursive;
+}
+
+.search-card{
+    width: 95%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.card-content{
+    padding: 10px 15px 25px 15px;
+}
+
+.modal-card{
+    width:90%;
+    position: absolute;
+    top: 100px;
+    max-height: 60%;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 10px;
+}
+
+.filter-label{
+    display: block;
+}
+
+.labelled-input{
+    margin-right: 10px;
+}
