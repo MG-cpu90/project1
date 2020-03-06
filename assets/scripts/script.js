@@ -125,3 +125,42 @@ function DrawFilterCheckbox(dict) {
     
     });
 }
+let apiKey = "&number=5&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+
+// When user hits Search button
+// Grabs the value in the text
+
+$("#searchBtn").on("click", function() {
+    let search = $("#search").val()
+    // let timeToMake = $("#time").val()
+    let queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + apiKey
+    
+ 
+$.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(data) {
+    // if (timeToMake === ""){
+    //   alert("WHY?")
+    // }
+    console.log(data)
+     data.results.forEach(function(recipe){
+      // console.log({timeToMake})
+      if (recipe.readyInMinutes <= 50) {
+       var divEle = $("<div>")
+          
+          divEle.append(recipe.title)  
+          divEle.append(('<img src="https://spoonacular.com/recipeImages/' + recipe.image + '">'))
+         $("#here").append(divEle)
+      
+    
+    }
+    // console.log(readyRecipes)
+   
+       
+   });
+    
+ 
+  
+  })
+})
