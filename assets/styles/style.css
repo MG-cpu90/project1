@@ -22,3 +22,14 @@
 .card-content{
     padding: 10px 15px 25px 15px;
 }
+
+.modal-card{
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 10px;
+}
+
+.filter-label{
+    display: block;
+}
