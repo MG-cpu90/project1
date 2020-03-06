@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 var cuisines = {"African":false,
                 "American":false,
                 "British":false,
@@ -102,3 +103,43 @@ function DrawFilterCheckbox(dict) {
 
     });
 }
+=======
+let apiKey = "&number=20&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+
+// When user hits Search button
+// Grabs the value in the text
+
+$("#searhBtn").on("click", function() {
+    let search = $("#search").val()
+    let timeToMake = $("#time").val()
+    let queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + apiKey
+    
+ 
+$.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(data) {
+    if (timeToMake === ""){
+      alert("WHY?")
+    }
+    console.log(data)
+    var readyRecipes = data.results.filter(function(recipe){
+      console.log({timeToMake})
+      return recipe.readyInMinutes <= timeToMake
+        
+    })
+    console.log(readyRecipes)
+  
+    readyRecipes.forEach(recipe => {
+    $("#here").append("<div>")
+    $("#here").append(recipe.title)  
+    $("#here").append(('<img src="https://spoonacular.com/recipeImages/' + recipe.image + '">'))
+   
+       
+   });
+    
+ 
+  
+  })
+})
+>>>>>>> Stashed changes
