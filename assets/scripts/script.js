@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 var cuisines = {"African":false,
                 "American":false,
                 "British":false,
@@ -103,7 +102,6 @@ function DrawFilterCheckbox(dict) {
 
     });
 }
-=======
 let apiKey = "&number=20&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
 
 // When user hits Search button
@@ -142,4 +140,3 @@ $.ajax({
   
   })
 })
->>>>>>> Stashed changes
