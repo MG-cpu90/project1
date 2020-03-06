@@ -25,6 +25,9 @@
 
 .modal-card{
     width:90%;
+    position: absolute;
+    top: 100px;
+    max-height: 60%;
     margin-left:auto;
     margin-right:auto;
     border-radius: 10px;
@@ -32,4 +35,8 @@
 
 .filter-label{
     display: block;
+}
+
+.labelled-input{
+    margin-right: 10px;
 }
