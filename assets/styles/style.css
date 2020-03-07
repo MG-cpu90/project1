@@ -81,6 +81,19 @@
     width: 200%
 }
 
+.media-content{
+    overflow: visible;
+}
+
+.popover{
+width: 100%;
+
+}
+
+.recipe-result-content{
+    overflow: visible;
+}
+
 .recipe-name{
     display: inline-block;
 }

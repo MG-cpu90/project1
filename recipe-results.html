@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/styles/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/bulma-popover.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>ReciPlease</title>
 </head>
@@ -55,7 +56,14 @@
                 </div>
                 <div class="media-content">
                   <p class="is-6 recipe-name">John Smith</p>
-                  <button class="button info-button is-info">i</button>
+
+                  <div class="popover is-popover-bottom is-inline">
+                    <button class="button is-info popover-trigger info-button">i</button>
+                    <div class="popover-content">
+                        <iframe class="info-frame"></iframe>
+                    </div>
+                  </div>
+
                   <div class="content is-small">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Phasellus nec iaculis mauris.
@@ -66,6 +74,46 @@
             </div>
           </div>
 
+
+          <div class="card recipe-result">
+            <div class="card-content recipe-result-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-96x96">
+                    <img class="result-thumbnail" src="https://spoonacular.com/recipeImages/Creamy-Avocado-Pasta-547775.jpg" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="is-6 recipe-name">John Smith</p>
+
+                  <div class="popover is-popover-bottom is-inline">
+                    <button class="button is-info popover-trigger info-button">i</button>
+                    <div class="popover-content">
+                      <table class="table">
+                        <thead>
+                          <tr><th>Fruit</th><th>Color</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>Apple</td><td>Red</td></tr>
+                          <tr><td>Banana</td><td>Yellow</td></tr>
+                          <tr><td>Cucumber</td><td>Green</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="content is-small">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus nec iaculis mauris.
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+
+
+          
         </section>
 
 
