@@ -1,8 +1,20 @@
+.navbar{
+    position: fixed;
+    width: 100%;
+    border-bottom: tomato;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+}
+
+.content-section{
+    position: absolute;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .canvas{
     background-image: url("../images/jambalaya.jpg");
     background-size: cover;
-    height: 100vh;
-    padding: 0;
 }
 
 .brand{
@@ -10,6 +22,8 @@
     font-size: larger;
     font-family: 'Knewave', cursive;
 }
+
+/* Index Styling */
 
 .search-card{
     width: 95%;
@@ -39,4 +53,27 @@
 
 .labelled-input{
     margin-right: 10px;
+}
+
+/* Recipe Results  */
+
+.results-hero{
+    background-color: tomato;
+    height: 120px;
+}
+
+.results-hero-body{
+    padding: 1rem;
+}
+
+.results-title{
+    font-size: 1.5rem;
+}
+
+.results-subtitle{
+    font-size: 1.2rem;
+}
+
+.result-thumbnail{
+    width: 200%
 }
