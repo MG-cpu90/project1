@@ -131,10 +131,15 @@ let apiKey = "&number=5&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
 // Grabs the value in the text
 
 $("#searchBtn").on("click", function() {
+
+    // Add loading spinner to search box while awaiting response
+    $("search-box").addClass("is-loading");
+
     let search = $("#search").val()
     // let timeToMake = $("#time").val()
     let queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + apiKey
     
+    var recipes = [];
  
 $.ajax({
     url: queryURL,
@@ -144,19 +149,27 @@ $.ajax({
     //   alert("WHY?")
     // }
     console.log(data)
+
      data.results.forEach(function(recipe){
       // console.log({timeToMake})
       if (recipe.readyInMinutes <= 50) {
-       var divEle = $("<div>")
+
+        recipes.push(recipe);
+
+    //    var divEle = $("<div>")
           
-          divEle.append(recipe.title)  
-          divEle.append(('<img src="https://spoonacular.com/recipeImages/' + recipe.image + '">'))
-         $("#here").append(divEle)
+    //       divEle.append(recipe.title)  
+    //       divEle.append(('<img src="https://spoonacular.com/recipeImages/' + recipe.image + '">'))
+    //      $("#here").append(divEle)
       
     
     }
     // console.log(readyRecipes)
-   
+        // Saved recipes in local storage
+    localStorage.setItem("recipes",JSON.stringify(recipes));
+
+    // Navigate to results screen
+    window.location.href = "recipe-results.html";
        
    });
     
