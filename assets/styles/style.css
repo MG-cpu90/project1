@@ -6,15 +6,17 @@
     border-style: solid;
 }
 
-.content-section{
-    position: absolute;
-    padding-left: 0;
-    padding-right: 0;
-}
-
 .canvas{
     background-image: url("../images/jambalaya.jpg");
     background-size: cover;
+    height: 100vh;
+}
+
+.content-section{
+
+    width:100%;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .brand{
@@ -59,6 +61,7 @@
 
 .results-hero{
     background-color: tomato;
+    background-size: cover;
     height: 120px;
 }
 
@@ -76,4 +79,67 @@
 
 .result-thumbnail{
     width: 200%
+}
+
+.media-content{
+    overflow: visible;
+}
+
+.popover{
+width: 100%;
+
+}
+
+.recipe-result-content{
+    overflow: visible;
+}
+
+.recipe-name{
+    display: inline-block;
+}
+
+.info-button{ 
+    color: white;
+    font-weight: 900;
+    border-radius: 10px;
+    font-size: 6px;
+    width: 10px;
+    padding: 0 auto;
+}
+
+/* Recipe Page */
+
+.ingredients{
+    margin: 15px;
+}
+
+.ingredients-list{
+    margin-top: 15px;
+}
+
+.ingredient-bullet{
+    color: black;
+}
+
+.ingredient-quantity{
+    display: inline-block;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.ingredient-name{
+    font-weight: 300;
+    display: inline;
+}
+
+
+
+.instructions{
+    margin: 15px;
+    text-align: justify;
+}
+
+.recipe-steps{
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
