@@ -165,8 +165,9 @@ $.ajax({
     
     }
     // console.log(readyRecipes)
-        // Saved recipes in local storage
+        // Saved recipes/search value in local storage
     localStorage.setItem("recipes",JSON.stringify(recipes));
+    localStorage.setItem("search",JSON.stringify(search))
 
     // Navigate to results screen
     window.location.href = "recipe-results.html";
