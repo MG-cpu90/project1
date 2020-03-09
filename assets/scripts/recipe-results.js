@@ -36,9 +36,10 @@ function printResult(recipe){
     
     var popoverEl = getPopOver();
     
-    var contentEl = $("<div>").addClass("content is-small").text("placeholder text");
+    var contentEl = $("<div>").addClass("content is-small").text("Ready In: " + recipe.readyInMinutes + " minutes")
+    var contentEl2 = $("<div>").addClass("content is-small").text("Serves up to: " + recipe.servings + " people");
 
-    mediaContentEl.append(recipeNameEl).append(popoverEl).append(contentEl);
+    mediaContentEl.append(recipeNameEl).append(popoverEl).append(contentEl).append(contentEl2);
 
     mediaEl.append(mediaLeftEl).append(mediaContentEl);
 

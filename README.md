@@ -12,6 +12,7 @@ Finds recipes based off of your searches!
 * JQuery
 * Bulma Framework
 * Spoonacular API
+* Wikipedia API
 
 ## Instructions:
 Enter the type of food you want to eat in the search bar.
