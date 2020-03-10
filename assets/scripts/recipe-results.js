@@ -6,7 +6,6 @@ $(document).ready(function() {
 
     $(".results-subtitle").append(localStorage.getItem("search"))
 
-
     printResults(recipes)
 
 });
@@ -21,7 +20,7 @@ function printResults(recipes){
 
 function printResult(recipe){
 
-    var cardEl = $("<div>").addClass("card recipe-result").attr("data-id",recipe.id);
+    var cardEl = $("<div>").addClass("card recipe-result");
     var cardContentEl = $("<div>").addClass("card-content recipe-result-content");
     var mediaEl = $("<div>").addClass("media");
     var mediaLeftEl = $("<div>").addClass("media-left");
@@ -34,6 +33,11 @@ function printResult(recipe){
     var mediaContentEl = $("<div>").addClass("media-content");
     var recipeNameEl = $("<p>").addClass("is-6 recipe-name").text(recipe.title)
     
+    recipeNameEl.click(function() {
+        
+        console.log(recipe.id);
+    });
+
     var popoverEl = getPopOver();
     
     var contentEl = $("<div>").addClass("content is-small").text("placeholder text");
@@ -46,14 +50,22 @@ function printResult(recipe){
     
     cardEl.append(cardContentEl);
 
+
     $(".results").append(cardEl);
 
 }
 
 function getPopOver(){
 
-    var popoverEl = $("<div>").addClass("popover is-popover-bottom is-inline");
-    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").text("i");
+    var popoverEl = $("<div>").addClass("popover is-popover-bottom");
+    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").text("More Info");
+
+    buttonEl.click(function(){
+
+        event.preventDefault();
+        event.stopPropagation();
+    })
+
     var contentEl = $("<div>").addClass("popover-content");
     var iframeEl = $("<iframe>").addClass("info-frame");
 
