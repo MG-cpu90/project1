@@ -36,9 +36,13 @@ function printResult(recipe){
     var mediaContentEl = $("<div>").addClass("media-content");
     var recipeNameEl = $("<p>").addClass("is-6 recipe-name").text(recipe.title)
     
+    //Grabs the recipe user wants and stores it to local storage
+    // Then sends the user to recipe html page
     recipeNameEl.click(function() {
-        
         console.log(recipe.id);
+        localStorage.setItem("id", JSON.stringify(recipe.id))
+        localStorage.setItem("title", JSON.stringify(recipe.title))
+        window.location.href = "recipe.html"
     });
 
     var popoverEl = getPopOver();
@@ -58,13 +62,14 @@ function printResult(recipe){
 
     $(".results").append(cardEl);
 
-    $(".recipe-name").on("click", function() {
+    // $(recipeNameEl).on("click", function() {
 
-        var reciID = $(this).parent().attr(recipe.id)
-        console.log(reciID)
-        // window.location.href = "recipe.html";
+    //     var reciID = $(this).parent().attr(recipe.id)
+    //     // localStorage.setItem("ID", JSON.stringify(reciID));
+//     //     console.log(reciID)
+//     //     // window.location.href = "recipe.html";
     
-    })
+//     })
 
 }
 
