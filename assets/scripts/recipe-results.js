@@ -54,8 +54,11 @@ function printResult(recipe){
 
     $(".results").append(cardEl);
 
-    $(".recipe-result-content").on("click", function() {
-        window.location.href = "recipe.html";
+    $(".recipe-name").on("click", function() {
+
+        var reciID = $(this).parent().attr(recipe.id)
+        console.log(reciID)
+        // window.location.href = "recipe.html";
     
     })
 
