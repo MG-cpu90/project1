@@ -65,5 +65,36 @@ function getPopOver(){
 }
 
 
+// APPEND BUTTON WITH WIKIPEDIA LINK
+// I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
+var popOver = "";
+var infoButton = $("#info1");
+var recipeName = $(".results").text();
+console.log(recipeName);
 
+infoButton.on("click", function(event) {
+    event.preventDefault();
+    var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeName;
+
+      // Performing an AJAX request with the queryURL
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+        crossDomain: true,
+        dataType: 'jsonp',
+      })
+        // After data comes back from the request
+        .then(function(response) {
+         var result = response[3][0];
+        var wikiLink = JSON.stringify(result);
+        console.log(wikiLink);
+
+            // Append a "Learn more" button with the link to the Wikipedia page on said foot item
+            // infoButton.append($("<iframe src=" + wikiLink + "</iframe>"));
+
+            $("#frame").attr("src", wikiLink);
+
+
+        });
+  });
 
