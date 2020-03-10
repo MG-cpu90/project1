@@ -82,7 +82,21 @@ function getPopOver(){
 
         event.preventDefault();
         event.stopPropagation();
-    })
+
+        var frame = $(this).parent().find("iframe");
+
+        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=carrot";
+
+        $.ajax({
+            type: "get",
+            url: wikiUrl,
+            crossDomain: true,
+            dataType: "jsonp"}).then(function (response) {
+
+                frame.attr("src",response[3][0]);
+            });
+
+    });
 
     var contentEl = $("<div>").addClass("popover-content");
     var iframeEl = $("<iframe>").addClass("info-frame");
