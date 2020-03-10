@@ -1,6 +1,4 @@
 .navbar{
-    position: fixed;
-    width: 100%;
     border-bottom: tomato;
     border-width: 0 0 3px 0;
     border-style: solid;
@@ -13,14 +11,12 @@
 }
 
 .content-section{
-
-    width:100%;
+    padding-top: 0;
     padding-left: 0;
     padding-right: 0;
 }
 
 .brand{
-    margin-left: 10px;
     font-size: larger;
     font-family: 'Knewave', cursive;
 }
@@ -85,30 +81,31 @@
     overflow: visible;
 }
 
-.popover{
-width: 100%;
-
-}
-
 .recipe-result-content{
     overflow: visible;
 }
 
-.recipe-name{
+/* .recipe-name{
     display: inline-block;
+} */
+
+.recipe-name:hover{
+    text-decoration: underline;
 }
 
 .info-button{ 
     color: white;
     font-weight: 900;
-    border-radius: 10px;
-    font-size: 6px;
-    width: 10px;
-    margin-left: 5px;
+    border-radius: 15px;
+    font-size: 10px;
     padding: 0 auto;
 }
 
 /* Recipe Page */
+
+.main{
+    padding: 0;
+}
 
 .ingredients{
     margin: 15px;
@@ -132,7 +129,6 @@ width: 100%;
     font-weight: 300;
     display: inline;
 }
-
 
 
 .instructions{
