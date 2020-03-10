@@ -145,7 +145,7 @@ $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(data) {
-    // if (timeToMake === ""){
+    // if (timeToMake === ""){ss
     //   alert("WHY?")
     // }
     console.log(data)
