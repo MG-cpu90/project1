@@ -136,7 +136,7 @@ $("#searchBtn").on("click", function() {
     $("search-box").addClass("is-loading");
 
     let search = $("#search").val()
-    // let timeToMake = $("#time").val()
+
     let queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + apiKey
     
     var recipes = [];
@@ -145,13 +145,11 @@ $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(data) {
-    // if (timeToMake === ""){ss
-    //   alert("WHY?")
-    // }
+  
     console.log(data)
 
      data.results.forEach(function(recipe){
-      // console.log({timeToMake})
+     
       if (recipe.readyInMinutes <= 50) {
 
         recipes.push(recipe);
