@@ -84,7 +84,13 @@ function getPopOver(recipeTitle){
 
         var frame = $(this).parent().find("iframe");
         var recipeName = $(this).parent().siblings("p").text();
+        var recipeName = recipeName.replace(" ", "-");
+        recipeName = recipeName.replace(" ", "-");
+        console.log(recipeName);
+        
         var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
+
+        console.log(wikiUrl);
 
         $.ajax({
             type: "get",
