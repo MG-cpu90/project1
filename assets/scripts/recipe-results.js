@@ -12,6 +12,8 @@ $(document).ready(function() {
 });
 
 
+
+
 function printResults(recipes){
 
     for(i = 0; i < recipes.length; i++){
@@ -41,6 +43,8 @@ function printResult(recipe){
         // placeholder for ajax recipe detials call
         console.log(recipe.id);
     });
+
+   
 
     var popoverEl = getPopOver(recipe.title);
     // var sumCont = sumEL();
@@ -79,8 +83,8 @@ function getPopOver(recipeTitle){
         event.stopPropagation();
 
         var frame = $(this).parent().find("iframe");
-
-        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=carrot";
+        var recipeName = $(this).parent().siblings("p").text();
+        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
 
         $.ajax({
             type: "get",
@@ -90,6 +94,9 @@ function getPopOver(recipeTitle){
 
                 frame.attr("src",response[3][0]);
             });
+
+            
+            console.log("title : "+recipeName);
 
     });
 
