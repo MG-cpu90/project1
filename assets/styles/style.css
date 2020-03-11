@@ -101,6 +101,14 @@
     padding: 0 auto;
 }
 
+.popover-content{
+    height: 300px;
+}
+
+.info-frame{
+    height: 100%;
+}
+
 /* Recipe Page */
 
 .main{
