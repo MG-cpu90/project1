@@ -38,10 +38,11 @@ function printResult(recipe){
     
     recipeNameEl.click(function() {
         
+        // placeholder for ajax recipe detials call
         console.log(recipe.id);
     });
 
-    var popoverEl = getPopOver();
+    var popoverEl = getPopOver(recipe.title);
     // var sumCont = sumEL();
     
     var contentEl = $("<div>").addClass("content is-small").text("Ready In: " + recipe.readyInMinutes + " minutes")
@@ -55,34 +56,42 @@ function printResult(recipe){
     
     cardEl.append(cardContentEl);
 
-
     $(".results").append(cardEl);
 
-    $(".recipe-result-content").on("click", function() {
+    $(".recipe-name").on("click", function() {
+
+        event.preventDefault();
+
         window.location.href = "recipe.html";
     
     })
 
 }
 
-
-function getPopOver(){
+function getPopOver(recipeTitle){
 
     var popoverEl = $("<div>").addClass("popover is-popover-bottom");
-    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").text("More Info");
-    var contentEl = $("<div>").addClass("popover-content");
-    var iframeEl = $("<iframe>").addClass("info-frame");
-
-    contentEl.append(iframeEl);
-    buttonEl.append(contentEl);
-    popoverEl.append(buttonEl).append(contentEl);
-
-    // var recipeNameEl = $("<p>").text(recipe.title)
+    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").attr("data-name",recipeTitle).text("More Info");
 
     buttonEl.click(function(){
 
         event.preventDefault();
         event.stopPropagation();
+
+        var frame = $(this).parent().find("iframe");
+
+        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=carrot";
+
+        $.ajax({
+            type: "get",
+            url: wikiUrl,
+            crossDomain: true,
+            dataType: "jsonp"}).then(function (response) {
+
+                frame.attr("src",response[3][0]);
+            });
+
+    });
 
         var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeNameEl;
 

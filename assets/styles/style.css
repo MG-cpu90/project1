@@ -74,7 +74,7 @@
 }
 
 .result-thumbnail{
-    width: 200%
+    height:96px;
 }
 
 .media-content{
@@ -99,6 +99,14 @@
     border-radius: 15px;
     font-size: 10px;
     padding: 0 auto;
+}
+
+.popover-content{
+    height: 300px;
+}
+
+.info-frame{
+    height: 100%;
 }
 
 /* Recipe Page */
