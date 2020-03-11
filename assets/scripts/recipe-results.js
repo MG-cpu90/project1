@@ -16,6 +16,7 @@ function printResults(recipes){
 
     for(i = 0; i < recipes.length; i++){
         printResult(recipes[i]);
+        
     }
 }
 

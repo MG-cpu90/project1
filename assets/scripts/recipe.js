@@ -19,19 +19,25 @@ $(document).ready(function() {
         url: reciIngSite,
         method: "GET"
       }).then(function(data) {
-        for(i = 0; i < data.ingredients; i++){
-            printResult(data[i]);
+     
+        for(x = 0; x < data.ingredients.length; x++){
+            printResultIng(data.ingredients[x]);
+           
         }
-          console.log(data)
-          var classEl = $("<ul>").addClass("ingredients-list")
+    })
+        // Prints the ingredients needed
+      function printResultIng(ingredient){
+          
+          var ingQuan = $("<span>").addClass("ingredient-quantity").text(ingredient.amount.metric.value + " ");
+          var ingName = $("<p>").addClass("ingredient-name").text(ingredient.name + " " + ingredient.amount.metric.unit );
           var ingBullet = $("<li>").addClass("ingredient-bullet")
-          var ingQuan = $("<span>").addClass("ingredient-quantity")      
-          var ingName = $("<p>").addClass("ingredient-name").text(data.ingredients.name)
-
-         $(".ingredients").append(ingName)
-
-
+          
+        
+        ingQuan.append(ingName);
+        ingBullet.append(ingQuan);
       
-      })
-});
+         $(".ingredients").append(ingBullet);
 
+
+          }
+})
