@@ -13,7 +13,9 @@ $(document).ready(function() {
     $("#readyToServe").text("Will be ready in: " + reciMinutes + " minutes")
 
     var reciIngSite = "https://api.spoonacular.com/recipes/" + reciID + "/ingredientWidget.json?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+    var recIns = "https://api.spoonacular.com/recipes/" + reciID + "/analyzedInstructions?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
     console.log(reciIngSite)
+    console.log(recIns)
 
     $.ajax({
         url: reciIngSite,
@@ -25,7 +27,7 @@ $(document).ready(function() {
            
         }
     })
-        // Prints the ingredients needed
+        // Prints the ingredients to
       function printResultIng(ingredient){
           
           var ingQuan = $("<span>").addClass("ingredient-quantity").text(ingredient.amount.metric.value + " ");
@@ -40,4 +42,23 @@ $(document).ready(function() {
 
 
           }
-})
+
+          //Prints the instructions to page
+          $.ajax({
+            url: recIns,
+            method: "GET"
+          }).then(function(data){
+            for (y = 0; y < data.steps.length; y++){
+              printResultInstuc(data.steps[y]);
+            }
+          })
+
+          function printResultInstuc(step){
+            var recStep = $("<p>").addClass("recipe-steps").text(steps.step)
+
+            $(".instructions").append(recStep)
+          }
+          
+        })
+
+      
