@@ -62,6 +62,8 @@ $(".show-modal-button").click(function() {
 
     populateModal(filterType);
 
+    $(".modal-card-title").text(filterType);
+
     $(".modal").attr("class","modal is-active");
     })
 
@@ -78,13 +80,13 @@ $(".delete").click(function(){
 function populateModal(filterType){
     
     switch(filterType){
-        case "diets":
+        case "Diets":
         DrawFilterCheckbox(diets);
         break;
-        case "cuisines":
+        case "Cuisines":
         DrawFilterCheckbox(cuisines);
         break;
-        case "intolerances":
+        case "Intolerances":
         DrawFilterCheckbox(intolerances);
         break;
     }

@@ -49,8 +49,8 @@ function printResult(recipe){
     var popoverEl = getPopOver(recipe.title);
     // var sumCont = sumEL();
     
-    var contentEl = $("<div>").addClass("content is-small").text("Ready In: " + recipe.readyInMinutes + " minutes")
-    var contentEl2 = $("<div>").addClass("content is-small").text("Serves up to: " + recipe.servings + " people");
+    var contentEl = $("<p>").addClass("recipe-attr").text("Ready In: " + recipe.readyInMinutes + " minutes")
+    var contentEl2 = $("<p>").addClass("recipe-attr").text("Serves up to: " + recipe.servings + " people");
 
     mediaContentEl.append(recipeNameEl).append(popoverEl).append(contentEl).append(contentEl2)
 
@@ -83,10 +83,9 @@ function getPopOver(recipeTitle){
         event.stopPropagation();
 
         var frame = $(this).parent().find("iframe");
-        var recipeName = $(this).parent().siblings("p").text();
-        var recipeName = recipeName.replace(" ", "-");
-        recipeName = recipeName.replace(" ", "-");
-        console.log(recipeName);
+        var recipeName = $(this).attr("data-name");
+ 
+        var recipeName = recipeName.replace(" ", "%20");
         
         var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
 
@@ -102,7 +101,7 @@ function getPopOver(recipeTitle){
             });
 
             
-            console.log("title : "+recipeName);
+            console.log("title : "+ recipeName);
 
     });
 
