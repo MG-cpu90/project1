@@ -5,7 +5,7 @@ $(document).ready(function() {
     console.log(recipes);
 
     $(".results-subtitle").append(localStorage.getItem("search"))
-
+    // var queryURL2 = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
 
     printResults(recipes)
 
@@ -21,24 +21,33 @@ function printResults(recipes){
 
 function printResult(recipe){
 
-    var cardEl = $("<div>").addClass("card recipe-result").attr("data-id",recipe.id);
+    var cardEl = $("<div>").addClass("card recipe-result");
+
     var cardContentEl = $("<div>").addClass("card-content recipe-result-content");
     var mediaEl = $("<div>").addClass("media");
     var mediaLeftEl = $("<div>").addClass("media-left");
     var figureEl = $("<figure>").addClass("image is-96x96");
     var imgEl = $("<img>").addClass("result-thumbnail").attr("src","https://spoonacular.com/recipeImages/" + recipe.image).attr("alt",recipe.title);
-    
+    // var SumEl = $("<div>").addClass("content is-small").attr("https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a")
+
     figureEl.append(imgEl);
     mediaLeftEl.append(figureEl);
 
     var mediaContentEl = $("<div>").addClass("media-content");
     var recipeNameEl = $("<p>").addClass("is-6 recipe-name").text(recipe.title)
     
-    var popoverEl = getPopOver();
-    
-    var contentEl = $("<div>").addClass("content is-small").text("placeholder text");
+    recipeNameEl.click(function() {
+        
+        console.log(recipe.id);
+    });
 
-    mediaContentEl.append(recipeNameEl).append(popoverEl).append(contentEl);
+    var popoverEl = getPopOver();
+    // var sumCont = sumEL();
+    
+    var contentEl = $("<div>").addClass("content is-small").text("Ready In: " + recipe.readyInMinutes + " minutes")
+    var contentEl2 = $("<div>").addClass("content is-small").text("Serves up to: " + recipe.servings + " people");
+
+    mediaContentEl.append(recipeNameEl).append(popoverEl).append(contentEl).append(contentEl2)
 
     mediaEl.append(mediaLeftEl).append(mediaContentEl);
 
@@ -46,14 +55,21 @@ function printResult(recipe){
     
     cardEl.append(cardContentEl);
 
+
     $(".results").append(cardEl);
+
+    $(".recipe-result-content").on("click", function() {
+        window.location.href = "recipe.html";
+    
+    })
 
 }
 
+
 function getPopOver(){
 
-    var popoverEl = $("<div>").addClass("popover is-popover-bottom is-inline");
-    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").text("i");
+    var popoverEl = $("<div>").addClass("popover is-popover-bottom");
+    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").text("More Info");
     var contentEl = $("<div>").addClass("popover-content");
     var iframeEl = $("<iframe>").addClass("info-frame");
 
@@ -61,20 +77,14 @@ function getPopOver(){
     buttonEl.append(contentEl);
     popoverEl.append(buttonEl).append(contentEl);
 
-    return popoverEl;
-}
+    // var recipeNameEl = $("<p>").text(recipe.title)
 
+    buttonEl.click(function(){
 
-// APPEND BUTTON WITH WIKIPEDIA LINK
-// I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
-var popOver = "";
-var infoButton = $("#info1");
-var recipeName = $(".results").text();
-console.log(recipeName);
+        event.preventDefault();
+        event.stopPropagation();
 
-infoButton.on("click", function(event) {
-    event.preventDefault();
-    var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeName;
+        var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeNameEl;
 
       // Performing an AJAX request with the queryURL
       $.ajax({
@@ -90,11 +100,35 @@ infoButton.on("click", function(event) {
         console.log(wikiLink);
 
             // Append a "Learn more" button with the link to the Wikipedia page on said foot item
-            // infoButton.append($("<iframe src=" + wikiLink + "</iframe>"));
 
-            $("#frame").attr("src", wikiLink);
-
+            iframeEl.attr("src", wikiLink);
 
         });
-  });
+
+    })
+
+
+    return popoverEl;
+
+}
+
+// APPEND BUTTON WITH WIKIPEDIA LINK
+// I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
+
+
+// $(".recipe-result-content").on("click", function() {
+//     console.log("hello")
+//     window.location.href = "recipe.html";
+
+// })
+
+// function SumEl (){
+
+//     var sumCon = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+
+//     return sumCon;
+// }
+
+
+
 

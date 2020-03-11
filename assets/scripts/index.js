@@ -156,15 +156,10 @@ $.ajax({
 
         recipes.push(recipe);
 
-    //    var divEle = $("<div>")
-          
-    //       divEle.append(recipe.title)  
-    //       divEle.append(('<img src="https://spoonacular.com/recipeImages/' + recipe.image + '">'))
-    //      $("#here").append(divEle)
       
     
     }
-    // console.log(readyRecipes)
+
         // Saved recipes/search value in local storage
     localStorage.setItem("recipes",JSON.stringify(recipes));
     localStorage.setItem("search",JSON.stringify(search))
