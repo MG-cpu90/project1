@@ -121,8 +121,6 @@ function getPopOver(recipeTitle){
 
         });
 
-    })
-
 
     return popoverEl;
 
