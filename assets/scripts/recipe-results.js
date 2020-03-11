@@ -5,7 +5,7 @@ $(document).ready(function() {
     console.log(recipes);
 
     $(".results-subtitle").append(localStorage.getItem("search"))
-    // var queryURL2 = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+    
 
     printResults(recipes)
 
@@ -28,7 +28,7 @@ function printResult(recipe){
     var mediaLeftEl = $("<div>").addClass("media-left");
     var figureEl = $("<figure>").addClass("image is-96x96");
     var imgEl = $("<img>").addClass("result-thumbnail").attr("src","https://spoonacular.com/recipeImages/" + recipe.image).attr("alt",recipe.title);
-    // var SumEl = $("<div>").addClass("content is-small").attr("https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a")
+   
 
     figureEl.append(imgEl);
     mediaLeftEl.append(figureEl);
@@ -42,11 +42,11 @@ function printResult(recipe){
         console.log(recipe.id);
         localStorage.setItem("id", JSON.stringify(recipe.id))
         localStorage.setItem("title", JSON.stringify(recipe.title))
+        localStorage.setItem("minutes", JSON.stringify(recipe.readyInMinutes))
         window.location.href = "recipe.html"
     });
 
     var popoverEl = getPopOver();
-    // var sumCont = sumEL();
     
     var contentEl = $("<div>").addClass("content is-small").text("Ready In: " + recipe.readyInMinutes + " minutes")
     var contentEl2 = $("<div>").addClass("content is-small").text("Serves up to: " + recipe.servings + " people");
@@ -61,15 +61,6 @@ function printResult(recipe){
 
 
     $(".results").append(cardEl);
-
-    // $(recipeNameEl).on("click", function() {
-
-    //     var reciID = $(this).parent().attr(recipe.id)
-    //     // localStorage.setItem("ID", JSON.stringify(reciID));
-//     //     console.log(reciID)
-//     //     // window.location.href = "recipe.html";
-    
-//     })
 
 }
 
@@ -107,20 +98,6 @@ function getPopOver(){
 
     return popoverEl;
 }
-
-
-// $(".recipe-result-content").on("click", function() {
-//     console.log("hello")
-//     window.location.href = "recipe.html";
-
-// })
-
-// function SumEl (){
-
-//     var sumCon = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
-
-//     return sumCon;
-// }
 
 
 
