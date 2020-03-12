@@ -5,7 +5,7 @@ $(document).ready(function() {
     console.log(recipes);
 
     $(".results-subtitle").append(localStorage.getItem("search"))
-    // var queryURL2 = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+    
 
     printResults(recipes)
 
@@ -18,6 +18,7 @@ function printResults(recipes){
 
     for(i = 0; i < recipes.length; i++){
         printResult(recipes[i]);
+        
     }
 }
 
@@ -30,7 +31,7 @@ function printResult(recipe){
     var mediaLeftEl = $("<div>").addClass("media-left");
     var figureEl = $("<figure>").addClass("image is-96x96");
     var imgEl = $("<img>").addClass("result-thumbnail").attr("src","https://spoonacular.com/recipeImages/" + recipe.image).attr("alt",recipe.title);
-    // var SumEl = $("<div>").addClass("content is-small").attr("https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a")
+   
 
     figureEl.append(imgEl);
     mediaLeftEl.append(figureEl);
@@ -38,16 +39,24 @@ function printResult(recipe){
     var mediaContentEl = $("<div>").addClass("media-content");
     var recipeNameEl = $("<p>").addClass("is-6 recipe-name").text(recipe.title)
     
+    //Grabs the recipe user wants and stores it to local storage
+    // Then sends the user to recipe html page
     recipeNameEl.click(function() {
+
         
         // placeholder for ajax recipe detials call
+
         console.log(recipe.id);
+        localStorage.setItem("id", JSON.stringify(recipe.id))
+        localStorage.setItem("title", JSON.stringify(recipe.title))
+        localStorage.setItem("minutes", JSON.stringify(recipe.readyInMinutes))
+        window.location.href = "recipe.html"
     });
 
-   
 
     var popoverEl = getPopOver(recipe.title);
     // var sumCont = sumEL();
+
     
     var contentEl = $("<p>").addClass("recipe-attr").text("Ready In: " + recipe.readyInMinutes + " minutes")
     var contentEl2 = $("<p>").addClass("recipe-attr").text("Serves up to: " + recipe.servings + " people");
@@ -62,6 +71,7 @@ function printResult(recipe){
 
     $(".results").append(cardEl);
 
+
     $(".recipe-name").on("click", function() {
 
         event.preventDefault();
@@ -69,6 +79,7 @@ function printResult(recipe){
         window.location.href = "recipe.html";
     
     })
+
 
 }
 
@@ -133,20 +144,6 @@ function getPopOver(recipeTitle){
 
 // APPEND BUTTON WITH WIKIPEDIA LINK
 // I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
-
-
-// $(".recipe-result-content").on("click", function() {
-//     console.log("hello")
-//     window.location.href = "recipe.html";
-
-// })
-
-// function SumEl (){
-
-//     var sumCon = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
-
-//     return sumCon;
-// }
 
 
 

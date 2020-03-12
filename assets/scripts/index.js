@@ -127,7 +127,8 @@ function DrawFilterCheckbox(dict) {
     
     });
 }
-let apiKey = "&number=5&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+// Sets GLOBAL scope for API key
+let apiKey = "&number=25&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
 
 // When user hits Search button
 // Grabs the value in the text
@@ -138,7 +139,7 @@ $("#searchBtn").on("click", function() {
     $("search-box").addClass("is-loading");
 
     let search = $("#search").val()
-    // let timeToMake = $("#time").val()
+
     let queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + apiKey
     
     var recipes = [];
@@ -147,14 +148,12 @@ $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(data) {
-    // if (timeToMake === ""){ss
-    //   alert("WHY?")
-    // }
+  
     console.log(data)
 
      data.results.forEach(function(recipe){
-      // console.log({timeToMake})
-      if (recipe.readyInMinutes <= 50) {
+     
+      if (recipe.readyInMinutes <= 90) {
 
         recipes.push(recipe);
 
@@ -174,4 +173,40 @@ $.ajax({
  
   
   })
+})
+
+// When the YOLO button is clicked
+$("#randomBtn").on("click", function() {
+     // Add loading spinner to search box while awaiting response
+     $("search-box").addClass("is-loading");
+
+     // emtpies values from local storage
+     localStorage.clear();
+
+     
+     function randoNumber() {
+
+        let min = Math.ceil(1000)
+        let max = Math.floor(9500)
+        result = Math.floor(Math.random() * (max - min + 1)) + min
+        return result
+
+    }
+    
+    
+    var id = randoNumber()
+    let queryURL2 = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+
+    //Makes ajax API call to get the various recipe info
+    // dumps info into local storage
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+      }).then(function (data){
+        localStorage.setItem("title", JSON.stringify(data.title))
+        localStorage.setItem("minutes", JSON.stringify(data.readyInMinutes))
+        localStorage.setItem("id",JSON.stringify(id))
+        window.location.href = "recipe.html"
+
+      })
 })
