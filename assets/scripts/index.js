@@ -127,11 +127,37 @@ function DrawFilterCheckbox(dict) {
     
     });
 }
+
 let apiKey = "&number=5&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+
+function getFilterTextFromDict(dict, name){
+
+    var filterString = ""; 
+
+    keys = Object.keys(dict);
+
+    keys.forEach(k => { 
+
+        if(dict[k])
+            filterString += "&" + name + "=" + k; 
+    })
+
+    return filterString;
+}
+
+function getFilterText(){
+
+    var filterString = "";
+
+    filterString += getFilterTextFromDict(cuisines,"cuisine");
+    filterString += getFilterTextFromDict(diets,"diet");
+    filterString += getFilterTextFromDict(intolerances,"intolerance");
+
+    return filterString;
+}
 
 // When user hits Search button
 // Grabs the value in the text
-
 $("#searchBtn").on("click", function() {
 
     // Add loading spinner to search box while awaiting response
@@ -140,16 +166,18 @@ $("#searchBtn").on("click", function() {
     let search = $("#search").val()
     // let timeToMake = $("#time").val()
     let queryURL = "https://api.spoonacular.com/recipes/search?query=" + search + apiKey
-    
+
+    queryURL += getFilterText();
+
+    console.log(queryURL);
+
     var recipes = [];
  
 $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(data) {
-    // if (timeToMake === ""){ss
-    //   alert("WHY?")
-    // }
+
     console.log(data)
 
      data.results.forEach(function(recipe){
@@ -157,8 +185,6 @@ $.ajax({
       if (recipe.readyInMinutes <= 50) {
 
         recipes.push(recipe);
-
-      
     
     }
 
@@ -170,8 +196,5 @@ $.ajax({
     window.location.href = "recipe-results.html";
        
    });
-    
- 
-  
   })
 })

@@ -30,7 +30,6 @@ function printResult(recipe){
     var mediaLeftEl = $("<div>").addClass("media-left");
     var figureEl = $("<figure>").addClass("image is-96x96");
     var imgEl = $("<img>").addClass("result-thumbnail").attr("src","https://spoonacular.com/recipeImages/" + recipe.image).attr("alt",recipe.title);
-    // var SumEl = $("<div>").addClass("content is-small").attr("https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a")
 
     figureEl.append(imgEl);
     mediaLeftEl.append(figureEl);
@@ -44,10 +43,7 @@ function printResult(recipe){
         console.log(recipe.id);
     });
 
-   
-
     var popoverEl = getPopOver(recipe.title);
-    // var sumCont = sumEL();
     
     var contentEl = $("<p>").addClass("recipe-attr").text("Ready In: " + recipe.readyInMinutes + " minutes")
     var contentEl2 = $("<p>").addClass("recipe-attr").text("Serves up to: " + recipe.servings + " people");
@@ -79,13 +75,15 @@ function getPopOver(recipeTitle){
 
     buttonEl.click(function(){
 
-        event.preventDefault();
-        event.stopPropagation();
+    event.preventDefault();
+        
+    event.stopPropagation();
 
-        var frame = $(this).parent().find("iframe");
-        var recipeName = $(this).attr("data-name");
+    var frame = $(this).parent().find("iframe");
+        
+    var recipeName = $(this).attr("data-name");
  
-        var recipeName = recipeName.replace(" ", "%20");
+    var recipeName = recipeName.replace(" ", "%20");
         
         var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
 
@@ -104,28 +102,6 @@ function getPopOver(recipeTitle){
             console.log("title : "+ recipeName);
 
     });
-
-        var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeNameEl;
-
-      // Performing an AJAX request with the queryURL
-      $.ajax({
-        url: queryURL,
-        method: "GET",
-        crossDomain: true,
-        dataType: 'jsonp',
-      })
-        // After data comes back from the request
-        .then(function(response) {
-         var result = response[3][0];
-        var wikiLink = JSON.stringify(result);
-        console.log(wikiLink);
-
-            // Append a "Learn more" button with the link to the Wikipedia page on said foot item
-
-            iframeEl.attr("src", wikiLink);
-
-        });
-
 
     return popoverEl;
 
