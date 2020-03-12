@@ -14,9 +14,7 @@ $(document).ready(function() {
 
     var reciIngSite = "https://api.spoonacular.com/recipes/" + reciID + "/ingredientWidget.json?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
     var recIns = "https://api.spoonacular.com/recipes/" + reciID + "/analyzedInstructions?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
-    console.log(reciIngSite)
-    console.log(recIns)
-
+  
     $.ajax({
         url: reciIngSite,
         method: "GET"
