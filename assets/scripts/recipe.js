@@ -2,7 +2,10 @@
 $(document).ready(function() {
     
     // Grabs the needed info from storage
-    $(".hero").css("background-image","url(" + "https://spoonacular.com/recipeImages/Creamy-Avocado-Pasta-547775.jpg" +  ")");
+
+    var recImageID = JSON.parse(localStorage.getItem("image"));
+    var recImage = "https://spoonacular.com/recipeImages/" + recImageID 
+    $(".hero").css("background-image","url(" + recImage +  ")");
     
     var recipes = JSON.parse(localStorage.getItem("recipes"));
     var reciID = JSON.parse(localStorage.getItem("id"));
@@ -12,6 +15,7 @@ $(document).ready(function() {
     //Appends unique recipe to Header
     $("#recipeTitle").append(reciTitle)
     $("#readyToServe").text("Will be ready in: " + reciMinutes + " minutes")
+    console.log(recipes)
 
     var reciIngSite = "https://api.spoonacular.com/recipes/" + reciID + "/ingredientWidget.json?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
     var recIns = "https://api.spoonacular.com/recipes/" + reciID + "/analyzedInstructions?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"

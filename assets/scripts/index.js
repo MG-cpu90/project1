@@ -128,7 +128,7 @@ function DrawFilterCheckbox(dict) {
     });
 }
 // Sets GLOBAL scope for API key
-let apiKey = "&number=25&apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+let apiKey = "&number=25&apiKey=4472f39041d44dff8bb30e65b380b0a2"
 
 function getFilterTextFromDict(dict, name){
 
