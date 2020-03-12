@@ -1,18 +1,12 @@
 $(document).ready(function() {
     
-
     var recipes = JSON.parse(localStorage.getItem("recipes"));
-    console.log(recipes);
 
     $(".results-subtitle").append(localStorage.getItem("search"))
-    // var queryURL2 = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
 
     printResults(recipes)
 
 });
-
-
-
 
 function printResults(recipes){
 
@@ -44,7 +38,7 @@ function printResult(recipe){
     });
 
     var popoverEl = getPopOver(recipe.title);
-    
+
     var contentEl = $("<p>").addClass("recipe-attr").text("Ready In: " + recipe.readyInMinutes + " minutes")
     var contentEl2 = $("<p>").addClass("recipe-attr").text("Serves up to: " + recipe.servings + " people");
 
@@ -71,23 +65,29 @@ function printResult(recipe){
 function getPopOver(recipeTitle){
 
     var popoverEl = $("<div>").addClass("popover is-popover-bottom");
-    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").attr("data-name",recipeTitle).text("More Info");
+    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").attr("data-name",recipeTitle).text("More Info");  
+    var popoverContentEl = $("<div>").addClass("popover-content");
+    var iframeEl = $("<iframe>").addClass("info-frame");
+
+    popoverEl.append(buttonEl);
+
+    popoverContentEl.append(iframeEl);
+
+    popoverEl.append(popoverContentEl);
 
     buttonEl.click(function(){
 
-    event.preventDefault();
-        
-    event.stopPropagation();
+        event.preventDefault();
+            
+        event.stopPropagation();
 
-    var frame = $(this).parent().find("iframe");
-        
-    var recipeName = $(this).attr("data-name");
- 
-    var recipeName = recipeName.replace(" ", "%20");
+        var frame = $(this).parent().find("iframe");
+            
+        var recipeName = $(this).attr("data-name");
+    
+        var recipeName = recipeName.split(" ").join("%20");
         
         var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
-
-        console.log(wikiUrl);
 
         $.ajax({
             type: "get",
@@ -95,35 +95,13 @@ function getPopOver(recipeTitle){
             crossDomain: true,
             dataType: "jsonp"}).then(function (response) {
 
+                console.log(response);
+
                 frame.attr("src",response[3][0]);
             });
-
-            
-            console.log("title : "+ recipeName);
 
     });
 
     return popoverEl;
 
 }
-
-// APPEND BUTTON WITH WIKIPEDIA LINK
-// I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
-
-
-// $(".recipe-result-content").on("click", function() {
-//     console.log("hello")
-//     window.location.href = "recipe.html";
-
-// })
-
-// function SumEl (){
-
-//     var sumCon = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
-
-//     return sumCon;
-// }
-
-
-
-
