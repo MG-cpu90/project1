@@ -13,8 +13,8 @@ $(document).ready(function() {
     $("#recipeTitle").append(reciTitle)
     $("#readyToServe").text("Will be ready in: " + reciMinutes + " minutes")
 
-    var reciIngSite = "https://api.spoonacular.com/recipes/" + reciID + "/ingredientWidget.json?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
-    var recIns = "https://api.spoonacular.com/recipes/" + reciID + "/analyzedInstructions?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
+    var reciIngSite = "https://api.spoonacular.com/recipes/" + reciID + "/ingredientWidget.json?apiKey=4472f39041d44dff8bb30e65b380b0a2"
+    var recIns = "https://api.spoonacular.com/recipes/" + reciID + "/analyzedInstructions?apiKey=4472f39041d44dff8bb30e65b380b0a2"
   
     $.ajax({
         url: reciIngSite,

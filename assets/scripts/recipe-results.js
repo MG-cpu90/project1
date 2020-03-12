@@ -99,8 +99,6 @@ function getPopOver(recipeTitle){
 
         var i =  Math.floor((Math.random() * recipeTitleWords.length));
 
-        console.log(i);
-
         var searchTerm = recipeTitleWords[i];
         
         var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+searchTerm;
@@ -110,8 +108,6 @@ function getPopOver(recipeTitle){
             url: wikiUrl,
             crossDomain: true,
             dataType: "jsonp"}).then(function (response) {
-
-                console.log(response);
 
                 frame.attr("src",response[3][0]);
             });
