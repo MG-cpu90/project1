@@ -43,6 +43,7 @@ function printResult(recipe){
         localStorage.setItem("id", JSON.stringify(recipe.id))
         localStorage.setItem("title", JSON.stringify(recipe.title))
         localStorage.setItem("minutes", JSON.stringify(recipe.readyInMinutes))
+        localStorage.setItem("image", JSON.stringify(recipe.image))
         window.location.href = "recipe.html"
     });
 
