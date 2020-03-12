@@ -105,15 +105,34 @@ function getPopOver(recipeTitle){
 
     });
 
-    var contentEl = $("<div>").addClass("popover-content");
-    var iframeEl = $("<iframe>").addClass("info-frame");
+        var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeNameEl;
 
-    contentEl.append(iframeEl);
-    buttonEl.append(contentEl);
-    popoverEl.append(buttonEl).append(contentEl);
+      // Performing an AJAX request with the queryURL
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+        crossDomain: true,
+        dataType: 'jsonp',
+      })
+        // After data comes back from the request
+        .then(function(response) {
+         var result = response[3][0];
+        var wikiLink = JSON.stringify(result);
+        console.log(wikiLink);
+
+            // Append a "Learn more" button with the link to the Wikipedia page on said foot item
+
+            iframeEl.attr("src", wikiLink);
+
+        });
+
 
     return popoverEl;
+
 }
+
+// APPEND BUTTON WITH WIKIPEDIA LINK
+// I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
 
 
 // $(".recipe-result-content").on("click", function() {
