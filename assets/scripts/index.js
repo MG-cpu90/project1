@@ -195,6 +195,8 @@ $("#randomBtn").on("click", function() {
     var id = randoNumber()
     let queryURL2 = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=18f2f6ffa1da41b0b161e90498f0d67a"
 
+    //Makes ajax API call to get the various recipe info
+    // dumps info into local storage
     $.ajax({
         url: queryURL2,
         method: "GET"
@@ -204,15 +206,5 @@ $("#randomBtn").on("click", function() {
         localStorage.setItem("id",JSON.stringify(id))
         window.location.href = "recipe.html"
 
-        console.log("hello")
       })
-
-
-
-
-
-
-
-
-
 })
