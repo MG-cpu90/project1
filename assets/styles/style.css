@@ -103,10 +103,6 @@
     overflow: visible;
 }
 
-/* .recipe-name{
-    display: inline-block;
-} */
-
 .recipe-name:hover{
     text-decoration: underline;
 }

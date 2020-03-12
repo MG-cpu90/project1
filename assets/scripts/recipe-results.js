@@ -36,7 +36,6 @@ function printResult(recipe){
     // Then sends the user to recipe html page
     recipeNameEl.click(function() {
 
-        
         // placeholder for ajax recipe detials call
 
         console.log(recipe.id);
@@ -77,7 +76,7 @@ function printResult(recipe){
 function getPopOver(recipeTitle){
 
     var popoverEl = $("<div>").addClass("popover is-popover-bottom");
-    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").attr("data-name",recipeTitle).text("More Info");  
+    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").attr("data-name",recipeTitle).text("Random Info");  
     var popoverContentEl = $("<div>").addClass("popover-content");
     var iframeEl = $("<iframe>").addClass("info-frame");
 
@@ -97,9 +96,15 @@ function getPopOver(recipeTitle){
             
         var recipeName = $(this).attr("data-name");
     
-        var recipeName = recipeName.split(" ").join("%20");
+        var recipeTitleWords = recipeName.split(" ");
+
+        var i =  Math.floor((Math.random() * recipeTitleWords.length));
+
+        console.log(i);
+
+        var searchTerm = recipeTitleWords[i];
         
-        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
+        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+searchTerm;
 
         $.ajax({
             type: "get",
