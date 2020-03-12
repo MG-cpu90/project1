@@ -37,11 +37,10 @@ function printResult(recipe){
     recipeNameEl.click(function() {
 
         // placeholder for ajax recipe detials call
-
-        console.log(recipe.id);
         localStorage.setItem("id", JSON.stringify(recipe.id))
         localStorage.setItem("title", JSON.stringify(recipe.title))
         localStorage.setItem("minutes", JSON.stringify(recipe.readyInMinutes))
+        localStorage.setItem("image", JSON.stringify(recipe.image))
         window.location.href = "recipe.html"
     });
 

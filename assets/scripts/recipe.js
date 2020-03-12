@@ -2,7 +2,10 @@
 $(document).ready(function() {
     
     // Grabs the needed info from storage
-    $(".hero").css("background-image","url(" + "https://spoonacular.com/recipeImages/Creamy-Avocado-Pasta-547775.jpg" +  ")");
+
+    var recImageID = JSON.parse(localStorage.getItem("image"));
+    var recImage = "https://spoonacular.com/recipeImages/" + recImageID 
+    $(".hero").css("background-image","url(" + recImage +  ")");
     
     var recipes = JSON.parse(localStorage.getItem("recipes"));
     var reciID = JSON.parse(localStorage.getItem("id"));
