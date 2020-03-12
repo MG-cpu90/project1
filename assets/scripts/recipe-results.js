@@ -12,6 +12,7 @@ function printResults(recipes){
 
     for(i = 0; i < recipes.length; i++){
         printResult(recipes[i]);
+        
     }
 }
 
@@ -31,10 +32,18 @@ function printResult(recipe){
     var mediaContentEl = $("<div>").addClass("media-content");
     var recipeNameEl = $("<p>").addClass("is-6 recipe-name").text(recipe.title)
     
+    //Grabs the recipe user wants and stores it to local storage
+    // Then sends the user to recipe html page
     recipeNameEl.click(function() {
+
         
         // placeholder for ajax recipe detials call
+
         console.log(recipe.id);
+        localStorage.setItem("id", JSON.stringify(recipe.id))
+        localStorage.setItem("title", JSON.stringify(recipe.title))
+        localStorage.setItem("minutes", JSON.stringify(recipe.readyInMinutes))
+        window.location.href = "recipe.html"
     });
 
     var popoverEl = getPopOver(recipe.title);
@@ -52,6 +61,7 @@ function printResult(recipe){
 
     $(".results").append(cardEl);
 
+
     $(".recipe-name").on("click", function() {
 
         event.preventDefault();
@@ -59,6 +69,7 @@ function printResult(recipe){
         window.location.href = "recipe.html";
     
     })
+
 
 }
 
