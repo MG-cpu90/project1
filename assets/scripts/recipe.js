@@ -48,12 +48,13 @@ $(document).ready(function() {
             url: recIns,
             method: "GET"
           }).then(function(data){
-            for (y = 0; y < data.steps.length; y++){
-              printResultInstuc(data.steps[y]);
+            
+            for (y = 0; y < data[0].steps.length; y++){
+              printResultInstuc(data[0].steps[y]);
             }
           })
 
-          function printResultInstuc(step){
+          function printResultInstuc(steps){
             var recStep = $("<p>").addClass("recipe-steps").text(steps.step)
 
             $(".instructions").append(recStep)
