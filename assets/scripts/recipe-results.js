@@ -12,6 +12,8 @@ $(document).ready(function() {
 });
 
 
+
+
 function printResults(recipes){
 
     for(i = 0; i < recipes.length; i++){
@@ -40,6 +42,10 @@ function printResult(recipe){
     //Grabs the recipe user wants and stores it to local storage
     // Then sends the user to recipe html page
     recipeNameEl.click(function() {
+
+        
+        // placeholder for ajax recipe detials call
+
         console.log(recipe.id);
         localStorage.setItem("id", JSON.stringify(recipe.id))
         localStorage.setItem("title", JSON.stringify(recipe.title))
@@ -47,10 +53,13 @@ function printResult(recipe){
         window.location.href = "recipe.html"
     });
 
-    var popoverEl = getPopOver();
+
+    var popoverEl = getPopOver(recipe.title);
+    // var sumCont = sumEL();
+
     
-    var contentEl = $("<div>").addClass("content is-small").text("Ready In: " + recipe.readyInMinutes + " minutes")
-    var contentEl2 = $("<div>").addClass("content is-small").text("Serves up to: " + recipe.servings + " people");
+    var contentEl = $("<p>").addClass("recipe-attr").text("Ready In: " + recipe.readyInMinutes + " minutes")
+    var contentEl2 = $("<p>").addClass("recipe-attr").text("Serves up to: " + recipe.servings + " people");
 
     mediaContentEl.append(recipeNameEl).append(popoverEl).append(contentEl).append(contentEl2)
 
@@ -60,15 +69,24 @@ function printResult(recipe){
     
     cardEl.append(cardContentEl);
 
-
     $(".results").append(cardEl);
+
+
+    $(".recipe-name").on("click", function() {
+
+        event.preventDefault();
+
+        window.location.href = "recipe.html";
+    
+    })
+
 
 }
 
-function getPopOver(){
+function getPopOver(recipeTitle){
 
     var popoverEl = $("<div>").addClass("popover is-popover-bottom");
-    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").text("More Info");
+    var buttonEl = $("<button>").addClass("button is-info popover-trigger info-button").attr("data-name",recipeTitle).text("More Info");
 
     buttonEl.click(function(){
 
@@ -76,8 +94,13 @@ function getPopOver(){
         event.stopPropagation();
 
         var frame = $(this).parent().find("iframe");
+        var recipeName = $(this).attr("data-name");
+ 
+        var recipeName = recipeName.replace(" ", "%20");
+        
+        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="+recipeName;
 
-        var wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=carrot";
+        console.log(wikiUrl);
 
         $.ajax({
             type: "get",
@@ -88,17 +111,39 @@ function getPopOver(){
                 frame.attr("src",response[3][0]);
             });
 
+            
+            console.log("title : "+ recipeName);
+
     });
 
-    var contentEl = $("<div>").addClass("popover-content");
-    var iframeEl = $("<iframe>").addClass("info-frame");
+        var queryURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + recipeNameEl;
 
-    contentEl.append(iframeEl);
-    buttonEl.append(contentEl);
-    popoverEl.append(buttonEl).append(contentEl);
+      // Performing an AJAX request with the queryURL
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+        crossDomain: true,
+        dataType: 'jsonp',
+      })
+        // After data comes back from the request
+        .then(function(response) {
+         var result = response[3][0];
+        var wikiLink = JSON.stringify(result);
+        console.log(wikiLink);
+
+            // Append a "Learn more" button with the link to the Wikipedia page on said foot item
+
+            iframeEl.attr("src", wikiLink);
+
+        });
+
 
     return popoverEl;
+
 }
+
+// APPEND BUTTON WITH WIKIPEDIA LINK
+// I need to fix the tags so that they work as right now they apply to a generic page I had used to test out the JS
 
 
 

@@ -16,9 +16,19 @@
     padding-right: 0;
 }
 
+.logo{
+    margin-right: 10px;
+}
+
 .brand{
     font-size: larger;
     font-family: 'Knewave', cursive;
+}
+
+.is-tomato{
+    background-color: tomato;
+    color: white;
+    font-weight: bold;
 }
 
 /* Index Styling */
@@ -29,6 +39,10 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+}
+
+.field{
+    margin-top: 5px;
 }
 
 .card-content{
@@ -77,6 +91,10 @@
     height:96px;
 }
 
+.recipe-attr{
+    font-size: 12px;
+}
+
 .media-content{
     overflow: visible;
 }
@@ -94,11 +112,19 @@
 }
 
 .info-button{ 
-    color: white;
-    font-weight: 900;
+    background-color: white;
+    font-weight: 800;
     border-radius: 15px;
     font-size: 10px;
-    padding: 0 auto;
+    margin-bottom: 5px;
+}
+
+.popover-content{
+    height: 300px;
+}
+
+.info-frame{
+    height: 100%;
 }
 
 /* Recipe Page */
