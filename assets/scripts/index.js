@@ -169,16 +169,12 @@ $("#searchBtn").on("click", function() {
 
     queryURL += getFilterText();
 
-    console.log(queryURL);
-
     var recipes = [];
  
 $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(data) {
-  
-    console.log(data)
 
      data.results.forEach(function(recipe){
      
@@ -227,7 +223,6 @@ $("#randomBtn").on("click", function() {
         url: queryURL2,
         method: "GET"
       }).then(function (data){
-          console.log(data)
         localStorage.setItem("title", JSON.stringify(data.title))
         localStorage.setItem("minutes", JSON.stringify(data.readyInMinutes))
         localStorage.setItem("id",JSON.stringify(id))

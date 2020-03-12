@@ -15,7 +15,6 @@ $(document).ready(function() {
     //Appends unique recipe to Header
     $("#recipeTitle").append(reciTitle)
     $("#readyToServe").text("Will be ready in: " + reciMinutes + " minutes")
-    console.log(recipes)
 
     var reciIngSite = "https://api.spoonacular.com/recipes/" + reciID + "/ingredientWidget.json?apiKey=4472f39041d44dff8bb30e65b380b0a2"
     var recIns = "https://api.spoonacular.com/recipes/" + reciID + "/analyzedInstructions?apiKey=4472f39041d44dff8bb30e65b380b0a2"
