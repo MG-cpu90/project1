@@ -43,5 +43,6 @@ the instructions
 Deployed Link: https://mg-cpu90.github.io/project1/
 GitHub Repo: https://github.com/MG-cpu90/project1
 
-
+## Application Screenshot
+![alt text](./assets/images/reciplease.png "Screen Shot")
 <img src="" width="600px" height="400px">
